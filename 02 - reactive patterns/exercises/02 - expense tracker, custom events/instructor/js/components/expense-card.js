@@ -87,7 +87,7 @@ class ExpenseCard extends HTMLElement {
 
     // 1. delete button clicked event
     this.shadowRoot.querySelector('.delete-btn').addEventListener(
-      "clicked",
+      "click",
       () => { // callback function is an anonymous arrow function
         const deleteEvent = new CustomEvent(
           "expense-delete",  // first term:  event's name
