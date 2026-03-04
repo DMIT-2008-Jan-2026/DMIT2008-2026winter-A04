@@ -1,9 +1,15 @@
+// react hooks
+import { useState } from 'react';
+
+// data
 import { MOVIE_LIST } from '../utils/movies'
 
+// nextjs
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+// MUI components
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -16,6 +22,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
 export default function Home() {
+
+  const [search, setSearch] = useState("")
+  const [year, setYear] = useState("")
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(search);
+    console.log(year);
+  }
+
   return (
     <div>
       <Head>
@@ -35,13 +51,17 @@ export default function Home() {
           </Typography>
           <form style={{width: '100%'}}>
             <Grid container spacing={2}>
+              {/* This is the old MUI Grid format, because we're pinning package versions in this starter.
+                  In the new format, you would simply e.g. 'size={6}'' rather than 'item xs={6}'.
+               */}
               <Grid item xs={6}>
                 <TextField
                   id="search-field"
                   label="search..."
                   variant="standard"
                   sx={{width: '100%'}}
-                  
+                  onChange={(e) => {setSearch(event.target.value)}}
+                  value={search}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -50,13 +70,15 @@ export default function Home() {
                   label="year"
                   variant="standard"
                   sx={{width: '100%'}}
-                 
+                  onChange={(e) => {setYear(event.target.value)}}
+                  value={year}
                 />
               </Grid>
               <Grid item xs={2}>
                 <Button
                   type="submit"
                   variant="contained"
+                  onClick={handleSubmit}
                 >Filter</Button>
               </Grid>
               <Grid item xs={10}>
