@@ -1,4 +1,6 @@
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -42,6 +44,12 @@ export default function ReviewCard({ rating, title, comment }) {
           </Avatar>
         }
         
+        action={
+          <IconButton>
+            <DeleteIcon />
+          </IconButton>
+        }
+
         title={
           <Typography variant="body2" color="text.secondary">
             {title}
