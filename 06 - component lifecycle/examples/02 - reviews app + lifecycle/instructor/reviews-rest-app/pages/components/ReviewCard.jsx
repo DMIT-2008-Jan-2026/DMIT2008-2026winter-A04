@@ -1,3 +1,7 @@
+// api functions
+import { deleteReview } from '../api/reviews';
+
+// mui components
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -36,6 +40,7 @@ export default function ReviewCard({ review, reviews, onReviewsChange }) {
   }
 
   const deleteRating = (reviewId) => {
+    console.log(reviewId)
     // remember, Array.filter() returns a new array! This is handy for us, because
     // state variables are immutable, so we always need to fully reconstruct what we
     // pass to the setter.
@@ -44,7 +49,12 @@ export default function ReviewCard({ review, reviews, onReviewsChange }) {
         return reviewId !== review.id
       }
     )
-    onReviewsChange(filteredReviews)
+    
+    // in this step, we're not worried about safety, just demoing
+    // functionality. next step, we'll look at resolving decoupling issues
+    // between front-end state & backend data (e.g. if API delete fails)
+    onReviewsChange(filteredReviews);
+    deleteReview(reviewId);
   }
   
   return (
